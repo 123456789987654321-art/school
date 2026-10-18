@@ -1,5 +1,8 @@
 (function (root) {
   const core = {
+    emptyWorkspace() {
+      return {docs:[],cards:[],activity:[],reviewed:0,chatHistory:[]};
+    },
     filterDocs(docs, query = '', status = 'all') {
       const q = query.trim().toLocaleLowerCase();
       return docs.filter(d => (status === 'all' || d.status === status) && `${d.title} ${d.tags.join(' ')}`.toLocaleLowerCase().includes(q));

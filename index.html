@@ -9,9 +9,12 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23214c3e'/%3E%3Cpath d='M11 12h18M11 20h14M11 28h18' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
   <script defer src="core.js"></script>
+  <script defer src="accounts.js"></script>
+  <script defer src="auth-ui.js"></script>
   <script defer src="app.js"></script>
 </head>
-<body>
+<body class="signed-out">
+  <main id="auth-screen" aria-label="账号登录"><noscript>请启用 JavaScript 后登录你的阅读空间。</noscript></main>
   <a class="skip-link" href="#main">跳转到主要内容</a>
   <aside class="sidebar" aria-label="侧边栏">
     <a class="brand" href="#workspace" aria-label="三页首页"><span class="brand-mark"><i></i><i></i><i></i></span><span>三页 <small>ThreePages</small></span></a>
@@ -19,24 +22,24 @@
     <div class="nav-caption">工作空间</div>
     <nav class="primary-nav" aria-label="主要导航">
       <a href="#workspace" data-view="workspace"><span class="icon" data-icon="layout"></span><span>阅读工作台</span></a>
-      <a href="#library" data-view="library"><span class="icon" data-icon="book"></span><span>我的文档</span><span class="nav-count" id="doc-count">6</span></a>
+      <a href="#library" data-view="library"><span class="icon" data-icon="book"></span><span>我的文档</span><span class="nav-count" id="doc-count">0</span></a>
       <a href="#cards" data-view="cards"><span class="icon" data-icon="layers"></span><span>知识卡片</span></a>
       <a href="#chat" data-view="chat"><span class="icon" data-icon="chat"></span><span>跨文问答</span><span class="tiny-label">AI</span></a>
-      <a href="#review" data-view="review"><span class="icon" data-icon="refresh"></span><span>今日复习</span><span class="review-count" id="nav-review">3</span></a>
+      <a href="#review" data-view="review"><span class="icon" data-icon="refresh"></span><span>今日复习</span><span class="review-count" id="nav-review">0</span></a>
     </nav>
     <div class="sidebar-bottom">
       <div class="reading-note"><span class="icon" data-icon="sprout"></span><p>让知识慢慢生长</p><span>每一页，都是新的积累。</span><div class="note-line"></div></div>
       <button class="help-button" data-action="help"><span class="icon" data-icon="help"></span>使用指南<span>↗</span></button>
-      <div class="profile"><span class="avatar">林</span><span>阅读者<small>本地演示空间</small></span><button class="icon-button" data-action="settings" aria-label="空间设置"><span class="icon" data-icon="settings"></span></button></div>
+      <div class="profile"><span class="avatar">我</span><span class="profile-name"><span data-account-name>阅读者</span><small>独立本地空间</small></span><button class="icon-button" data-action="settings" aria-label="空间设置"><span class="icon" data-icon="settings"></span></button></div>
     </div>
   </aside>
   <div class="app-shell">
     <header class="topbar">
       <div class="breadcrumb"><span class="icon" data-icon="panel"></span><span>我的空间</span><span class="slash">/</span><strong id="page-name">阅读工作台</strong></div>
-      <div class="topbar-actions"><button class="search-trigger" data-action="search"><span class="icon" data-icon="search"></span><span>搜索你的知识</span><kbd>Ctrl K</kbd></button><button class="icon-button" data-action="notifications" aria-label="查看提醒"><span class="icon" data-icon="bell"></span><i class="notification-dot"></i></button><span class="avatar small">林</span></div>
+      <div class="topbar-actions"><span id="save-status" role="status">已保存</span><button class="search-trigger" data-action="search"><span class="icon" data-icon="search"></span><span>搜索你的知识</span><kbd>Ctrl K</kbd></button><button class="icon-button" data-action="notifications" aria-label="查看提醒"><span class="icon" data-icon="bell"></span></button><button class="logout-button" data-action="logout">退出登录</button></div>
     </header>
     <main id="main" tabindex="-1"></main>
-    <footer class="page-footer"><span>三页之间，知识留下。</span><span>ThreePages <span class="footer-dot">·</span> 本地交互演示</span></footer>
+    <footer class="page-footer"><span>三页之间，知识留下。</span><span>ThreePages <span class="footer-dot">·</span> 本地账号 · 不跨设备同步</span></footer>
   </div>
   <dialog id="modal" aria-labelledby="modal-title"></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
